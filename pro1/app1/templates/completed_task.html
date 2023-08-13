@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-center">
+                    Title
+                </th>
+                <th scope="col" class="px-6 py-3 text-center">
+                    Description
+                </th>
+                <th scope="col" class="px-6 py-3 text-center">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3 text-center text-center">
+                    Action
+                </th>    
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in completed_tasks %}
+            {% if item.is_completed == 1 %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th class="px-6 py-4 text-center">
+                    {{ item.title }}
+                </th>
+                <td class="px-6 py-4 text-center">
+                    {{ item.description }}
+                </td>
+                <td class="px-6 py-4 mx-auto flex justify-around">
+                    Completed
+                </td>
+                <th class="px-6 py-4 text-center">
+                    Completed Task Can Not Edit And Delete
+                </th>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

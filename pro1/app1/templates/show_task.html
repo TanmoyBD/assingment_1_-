@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-center">
+                    Title
+                </th>
+                <th scope="col" class="px-6 py-3 text-center">
+                    Description
+                </th>
+                <th scope="col" class="px-6 py-3 text-center">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3 text-center">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            {% if item.is_completed == 0 %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-black font-semibold">
+                <td class="px-6 py-4 text-center">
+                    {{ item.title }}
+                </td>
+                <td class="px-6 py-4 text-center">
+                    {{ item.description }}
+                </td>
+                
+                 <td class="px-6 py-4 text-center">
+                     Not Completed
+                 </td>
+                </td>
+                <td class="px-6 py-4 mx-auto flex justify-around">
+                    <a href="{% url 'delete_task' id=item.id %}" class="text-white bg-red-500 rounded-md px-3 py-1">Delete</a>
+                    <a href="{% url 'edit_task' id=item.id %}" class="text-white bg-cyan-500 rounded-md px-3 py-1">Edit</a>
+                    <a href="{% url 'complete_task' id=item.id %}" class="text-white bg-green-600 rounded-md px-3 py-1">Complete</a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+
+.custom-input{
+  border: 1px solid gray;
+}
+.custom-textarea{
+  border: 1px solid gray;
+  height: 40px;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+  <h2 class="text-center text-xl font-bold border-b-2  border-gray-600 w-60 mx-auto mt-20">Add Your Task</h2>
+  <form class="add-task-form  " method="post">
+    {% csrf_token %}
+    <div class="input-area rounded-md bg-cyan-400 m-1 md:m-5 p-1 py-4 md:p-10 flex flex-col md:flex-row items-start justify-evenly">
+      <div class="form-group   ">
+        <label class="mr-3 font-semibold" for="{{ data.title.id_for_label }}">Title:</label>
+        {{ data.title }}
+      </div>
+      <div class="form-group flex flex-col md:flex-row">
+        <label class="mr-4 font-semibold" for="{{ data.description.id_for_label }}">Description:</label>
+        {{ data.description }}
+      </div>
+    </div>
+    <div class=" flex justify-end mr-[10vw]">
+      <button class=" bg-blue-600 px-3 py-2 text-white rounded-md" type="submit">Submit</button>
+    </div>
+  </form>
+{% endblock %}
